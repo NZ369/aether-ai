@@ -41,8 +41,8 @@ const formSchema = z.object({
   src: z.string().min(1, {
     message: "Image is required."
   }),
-  background: z.string().min(0, {
-    message: "Background image for chat space."
+  background: z.string().min(1, {
+    message: "Background image for chat space required."
   }),
   categoryId: z.string().min(1, {
     message: "Category is required",
@@ -70,7 +70,7 @@ export const CompanionForm = ({
       instructions: "",
       seed: "",
       src: "",
-      background: undefined,
+      background: "",
       categoryId: undefined,
     },
   });

@@ -22,7 +22,7 @@ export async function PATCH(
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    if (!src || !name || !description || !instructions || !seed || !categoryId) {
+    if (!src || !background || !name || !description || !instructions || !seed || !categoryId) {
       return new NextResponse("Missing required fields", { status: 400 });
     };
 

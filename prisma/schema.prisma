@@ -21,7 +21,7 @@ model Companion {
   userId        String
   userName      String
   src           String
-  background    String?
+  background    String
   name          String @db.Text
   description   String
   instructions  String @db.Text
