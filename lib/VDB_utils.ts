@@ -1,3 +1,4 @@
+/*
 import { OpenAIEmbeddings } from "langchain/embeddings/openai"
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter"
 import { ChatOpenAI } from "langchain/chat_models/openai"
@@ -115,3 +116,4 @@ export const queryPinecone = async (client: PineconeClient, indexName: string, q
         console.log('No matches found.')
     }
 }
+*/

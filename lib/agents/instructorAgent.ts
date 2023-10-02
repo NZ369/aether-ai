@@ -1,6 +1,8 @@
 import { llama2model, gpt35_2048 } from "@/lib/llm";
 import { CompanionKey, MemoryManager } from "@/lib/memory";
 import { Companion } from "@prisma/client";
+
+/*
 import { PineconeClient } from '@pinecone-database/pinecone'
 import { TextLoader } from 'langchain/document_loaders/fs/text'
 import { PDFLoader } from 'langchain/document_loaders/fs/pdf'
@@ -43,6 +45,7 @@ async function sendQuery(query: string) {
   const text = await queryPinecone(client, indexName, query)
   return text
 }
+*/
 
 export async function promptInstructor(
     companion: Companion,
