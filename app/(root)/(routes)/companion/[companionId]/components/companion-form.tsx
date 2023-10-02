@@ -70,7 +70,7 @@ export const CompanionForm = ({
       instructions: "",
       seed: "",
       src: "",
-      background: "",
+      background: undefined,
       categoryId: undefined,
     },
   });
