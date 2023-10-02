@@ -10,6 +10,7 @@ import { promptEthereal } from "@/lib/agents/etherealAgent";
 import { promptCounsellor } from "@/lib/agents/counselingAgent";
 import { promptCharacter } from "@/lib/agents/characterAgent";
 import { promptTarot } from "@/lib/agents/tarotAgent";
+import { promptInstructor } from "@/lib/agents/instructorAgent";
 
 dotenv.config({ path: `.env` });
 
@@ -60,12 +61,13 @@ export async function POST(
     };
     const memoryManager = await MemoryManager.getInstance();
 
-    await memoryManager.writeToHistory("User: " + prompt, companionKey);
-
-    const recentChatHistory = await memoryManager.readLatestHistory(companionKey);
-    if (recentChatHistory.length === 0) {
+    const records = await memoryManager.readLatestHistory(companionKey);
+    if (records.length === 0) {
       await memoryManager.seedChatHistory(companion.seed, "\n\n", companionKey);
     }
+    await memoryManager.writeToHistory("User: " + prompt + "\n", companionKey);
+
+    const recentChatHistory = await memoryManager.readLatestHistory(companionKey);
 
     let relevantHistory = ""
 /*
@@ -95,7 +97,7 @@ export async function POST(
 
     switch (companion.categoryId) {
       case "d29db2df-b459-482f-850f-4deb3cc5fbcb": //Ethereal Companions
-        resp = await promptEthereal(companion, relevantHistory, recentChatHistory);
+        resp = await promptEthereal(companion, prompt, relevantHistory, recentChatHistory);
         break;
       case "97151349-6835-47f9-a9ec-9bcf4f1d9016": //Character Companions
         resp = await promptCharacter(companion, relevantHistory, recentChatHistory);
@@ -104,10 +106,7 @@ export async function POST(
         resp = await promptCounsellor(companion, relevantHistory, recentChatHistory);
         break;
       case "11d9292c-e594-4214-b30f-d2d5b1721c1f": //Learning Companions
-        resp = await promptCounsellor(companion, relevantHistory, recentChatHistory);
-        break;
-      case "3f9e3423-134f-4542-95a5-226532ac4bce": //Social Companions
-        resp = await promptCounsellor(companion, relevantHistory, recentChatHistory);
+        resp = await promptInstructor(companion, companionKey, prompt, recentChatHistory);
         break;
       case "e09067c1-5fcb-42c0-853f-870fbf8547d9": //Divination Companions
         resp = await promptTarot(companion, prompt, recentChatHistory)
@@ -116,18 +115,14 @@ export async function POST(
         resp = await promptCharacter(companion, relevantHistory, recentChatHistory);
         break;
     }
-    
-    const cleaned = resp.replaceAll(",", "");
-    const chunks = cleaned.split("\n");
-    const response = chunks[0];
 
     var Readable = require("stream").Readable;
 
     let s = new Readable();
-    s.push(response);
+    s.push(resp);
     s.push(null);
-    if (response !== undefined && response.length > 1) {
-      await memoryManager.writeToHistory(companion.name + ":" + response.trim(), companionKey);
+    if (resp !== undefined && resp.length > 1) {
+      await memoryManager.writeToHistory(companion.name + ":" + resp.trim(), companionKey);
 
       await prismadb.companion.update({
         where: {
@@ -136,7 +131,7 @@ export async function POST(
         data: {
           messages: {
             create: {
-              content: response.trim(),
+              content: resp.trim(),
               role: "system",
               userId: user.id,
             },

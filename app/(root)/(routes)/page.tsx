@@ -23,7 +23,10 @@ const RootPage = async ({
   
   const data = await prismadb.companion.findMany({
     where: {
-      userId,
+      OR: [
+        { userId: "user_2TWmfYTh97z043qxnsNmAAIZ9PH" }, // Companions created by admin user
+        { userId }, // Companions created by the current user
+      ],
       categoryId: searchParams.categoryId,
       name: {
         search: searchParams.name,

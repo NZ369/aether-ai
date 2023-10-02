@@ -39,7 +39,6 @@ export const ChatClient = ({
         role: "system",
         content: completion
       };
-
       setMessages((current) => [...current, systemMessage]);
       setInput("");
 

@@ -12,8 +12,8 @@ async function cardReading(cardPulls: number, shuffleTimes: number, query: strin
       cardsSelected.push(result[0]);
     }
 
-    return await interpretCards(cardsSelected, context, query);
-    //return await interpretReading(interptretation, query);
+    const interpretation = await interpretCards(cardsSelected, context, query);
+    return await interpretReading(interpretation, query);
 }
 
 export async function promptTarot(
@@ -63,6 +63,8 @@ export async function promptTarot(
                     `
                   You are a tarot reader named ${companion.name}. You must not break character.  
                   ONLY generate plain sentences without prefix of who is speaking. DO NOT use ${companion.name}: prefix. 
+
+                  ${companion.instructions}
           
                   Do not generate more than one line of dialogue.
             
@@ -75,7 +77,6 @@ export async function promptTarot(
               );
               break;
     };
-    const resp1 = resp.replace(/\n\n/g, '  ');
-    const finalResponse = resp1.replace(/\n/g, '  ');
-    return finalResponse;
+    
+    return resp;
 };

@@ -32,11 +32,11 @@ const formSchema = z.object({
   description: z.string().min(1, {
     message: "Description is required.",
   }),
-  instructions: z.string().min(200, {
-    message: "Instructions require at least 200 characters."
+  instructions: z.string().min(100, {
+    message: "Instructions require at least 100 characters."
   }),
-  seed: z.string().min(200, {
-    message: "Seed requires at least 200 characters."
+  seed: z.string().min(100, {
+    message: "Seed requires at least 100 characters."
   }),
   src: z.string().min(1, {
     message: "Image is required."
@@ -215,7 +215,7 @@ export const CompanionForm = ({
             <div>
               <h3 className="text-lg font-medium">Configuration</h3>
               <p className="text-sm text-muted-foreground">
-                Detailed instructions for AI Behaviour
+                Provide detailed instructions for AI Behaviour
               </p>
             </div>
             <Separator className="bg-primary/10" />

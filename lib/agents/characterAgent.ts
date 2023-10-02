@@ -50,5 +50,9 @@ export async function promptCharacter(
           .catch(console.error)
       );
 
-    return resp;
+    const cleaned = resp.replaceAll(",", "");
+    const chunks = cleaned.split("\n");
+    const response = chunks[0];
+
+    return response;
 };

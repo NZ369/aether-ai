@@ -20,7 +20,7 @@ export async function interpretMeaning(
     cards: string[]
 ) {
     const extract_prompt = PromptTemplate.fromTemplate(
-        "Extract the meaning and symbolism of tarot {card1} in a comma seperated list.  Respond back only the list.  Example: 'rebirth, renewal, rest, rejuvenation' "
+        "Extract the meaning and symbolism of tarot {card1} in a comma seperated list of 10 words.  Respond back only the list.  Example: 'rebirth, renewal, rest, rejuvenation' "
       );
       const chain = new LLMChain({ llm: gpt35_20, prompt: extract_prompt, verbose: true });
       

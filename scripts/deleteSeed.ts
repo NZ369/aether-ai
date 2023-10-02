@@ -7,8 +7,7 @@ async function main() {
     await db.category.deleteMany({
       where: {
         OR: [
-          { name: 'Learning Companions' },
-          { name: 'Divination Companions' },
+          { name: 'Social Companions' },
         ],
       },
     });

@@ -14,28 +14,22 @@ export type CompanionKey = {
 export class MemoryManager {
   private static instance: MemoryManager;
   private history: Redis;
-  /*
   private vectorDBClient: PineconeClient;
   private vectorDimensions: number;
-  */
 
   public constructor() {
     this.history = Redis.fromEnv();
-    /*
     this.vectorDBClient = new PineconeClient();
     this.vectorDimensions = 1536;
-    */
   }
 
   public async init() {
-    /*
     if (this.vectorDBClient instanceof PineconeClient) {
       await this.vectorDBClient.init({
         apiKey: process.env.PINECONE_API_KEY!,
         environment: process.env.PINECONE_ENVIRONMENT!,
       });
     }
-    */
   }
 
   public static async getInstance(): Promise<MemoryManager> {
@@ -122,13 +116,6 @@ export class MemoryManager {
       await this.history.zadd(key, { score: counter, member: line });
       counter += 1;
     }
-/*
-    try {
-        await this.createPineconeIndex(companionKey)
-    }
-    catch (err) {
-        console.log('error: ', err)
-    }*/
   }
 
   public async deleteChatHistory(
@@ -150,7 +137,7 @@ export class MemoryManager {
     }
     return
   }
-
+ 
   /*
   public async createPineconeIndex (
     companionKey: CompanionKey,
