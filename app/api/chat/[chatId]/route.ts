@@ -96,19 +96,19 @@ export async function POST(
     console.log("\nCategory Id: "+ companion.categoryId + "\n")
 
     switch (companion.categoryId) {
-      case "d29db2df-b459-482f-850f-4deb3cc5fbcb": //Ethereal Companions
+      case "4ffb5aed-62a1-4f8d-84af-7eb1a1693361": //Ethereal Companions
         resp = await promptEthereal(companion, prompt, relevantHistory, recentChatHistory);
         break;
-      case "97151349-6835-47f9-a9ec-9bcf4f1d9016": //Character Companions
+      case "9bd017a0-280c-4059-8d18-74cd6c25c174": //Character Companions
         resp = await promptCharacter(companion, relevantHistory, recentChatHistory);
         break;
-      case "441b6d51-f7da-49f3-b392-b7ecb79a271f": //Counselling Companions
+      case "80df7a64-1b3b-4714-9973-bd7cee6feece": //Counselling Companions
         resp = await promptCounsellor(companion, relevantHistory, recentChatHistory);
         break;
-      case "11d9292c-e594-4214-b30f-d2d5b1721c1f": //Learning Companions
+      case "c5c91acc-cd2b-4c7d-b777-1c16838afc83": //Learning Companions
         resp = await promptInstructor(companion, companionKey, prompt, recentChatHistory);
         break;
-      case "e09067c1-5fcb-42c0-853f-870fbf8547d9": //Divination Companions
+      case "005e4c54-9eef-4730-b49a-df01ba65c3a8": //Divination Companions
         resp = await promptTarot(companion, prompt, recentChatHistory)
         break;
       default:
