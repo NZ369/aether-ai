@@ -57,5 +57,5 @@ export const gpt35_2048 = new OpenAI({
   maxTokens: 2048,
   openAIApiKey: "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",
   verbose: true, // In Node.js defaults to process.env.OPENAI_API_KEY
-  timeout: 20000,
+  timeout: 60000,
 });

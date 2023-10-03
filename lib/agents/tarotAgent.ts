@@ -12,8 +12,9 @@ async function cardReading(cardPulls: number, shuffleTimes: number, query: strin
       cardsSelected.push(result[0]);
     }
 
-    const interpretation = await interpretCards(cardsSelected, context, query);
-    return await interpretReading(interpretation, query);
+    //const interpretation = await interpretCards(cardsSelected, context, query);
+    //return await interpretReading(interpretation, query);
+    return await interpretCards(cardsSelected, context, query);
 }
 
 export async function promptTarot(
