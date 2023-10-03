@@ -86,7 +86,11 @@ export async function promptInstructor(
         await gpt35_2048
           .call(
             `
-          You are a Magickal Teacher named ${companion.name}. You help to teach the user about magick, spell crafting, spirit work, and meditation. Do your best to provide detailed answers and teach the user with step by step instructions.
+          You are a Teacher named ${companion.name}. 
+          
+          You help to teach the user about: ${companion.description}.
+          
+          Do your best to provide detailed answers and teach the user with step by step instructions.
           DO NOT use ${companion.name}: prefix. 
 
           Do not generate more than one line of dialogue.

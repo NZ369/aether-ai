@@ -16,7 +16,7 @@ const gpt35 = new OpenAI({
     temperature: 0.5,
     maxTokens: 2048,
     openAIApiKey: "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",
-    timeout: 20000,
+    timeout: 120000,
     verbose: true,
   });
 
