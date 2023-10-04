@@ -65,8 +65,5 @@ export async function promptEthereal(
         .catch(console.error)
     );
     
-    const chunks = resp.split(/user:|User:/);
-    const response = chunks[0];
-
-    return response;
+    return resp;
 };

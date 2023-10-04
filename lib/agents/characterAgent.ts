@@ -51,7 +51,7 @@ export async function promptCharacter(
       );
 
     const cleaned = resp.replaceAll(",", "");
-    const chunks = cleaned.split("\n");
+    const chunks = resp.split(/user:|User:/);
     const response = chunks[0];
 
     return response;
